@@ -3,6 +3,10 @@ import ply.yacc as yacc
 from sintaxeabstrata import *
 
 
+# Adicionar declaracao de variavel, no formato:
+# ID = exp;
+# A linguagem agora deve permitir 1 ou mais declarações de variáveis
+
 def p_exp_1(p):
     '''exp1 : exp1 MAIS exp2
              | exp1 MENOS exp2

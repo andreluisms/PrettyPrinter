@@ -1,5 +1,8 @@
 import ply.lex as lex
 
+#Adicionar ID  =  ;
+#Adicionar string er = r'\"([^\\\n]|(\\.))*?\"'
+
 tokens = ['MAIS', 'MENOS', 'MUL', 'DIV', 'NUM']
 t_MAIS='\+'
 t_MENOS='-'
