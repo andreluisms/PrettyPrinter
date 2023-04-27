@@ -1,0 +1,183 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> exp1
+Rule 1     exp1 -> exp1 MAIS exp2
+Rule 2     exp1 -> exp1 MENOS exp2
+Rule 3     exp1 -> exp2
+Rule 4     exp2 -> exp2 DIV exp3
+Rule 5     exp2 -> exp2 MUL exp3
+Rule 6     exp2 -> exp3
+Rule 7     exp3 -> NUM
+
+Terminals, with rules where they appear
+
+DIV                  : 4
+MAIS                 : 1
+MENOS                : 2
+MUL                  : 5
+NUM                  : 7
+error                : 
+
+Nonterminals, with rules where they appear
+
+exp1                 : 1 2 0
+exp2                 : 1 2 3 4 5
+exp3                 : 4 5 6
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . exp1
+    (1) exp1 -> . exp1 MAIS exp2
+    (2) exp1 -> . exp1 MENOS exp2
+    (3) exp1 -> . exp2
+    (4) exp2 -> . exp2 DIV exp3
+    (5) exp2 -> . exp2 MUL exp3
+    (6) exp2 -> . exp3
+    (7) exp3 -> . NUM
+
+    NUM             shift and go to state 4
+
+    exp1                           shift and go to state 1
+    exp2                           shift and go to state 2
+    exp3                           shift and go to state 3
+
+state 1
+
+    (0) S' -> exp1 .
+    (1) exp1 -> exp1 . MAIS exp2
+    (2) exp1 -> exp1 . MENOS exp2
+
+    MAIS            shift and go to state 5
+    MENOS           shift and go to state 6
+
+
+state 2
+
+    (3) exp1 -> exp2 .
+    (4) exp2 -> exp2 . DIV exp3
+    (5) exp2 -> exp2 . MUL exp3
+
+    MAIS            reduce using rule 3 (exp1 -> exp2 .)
+    MENOS           reduce using rule 3 (exp1 -> exp2 .)
+    $end            reduce using rule 3 (exp1 -> exp2 .)
+    DIV             shift and go to state 7
+    MUL             shift and go to state 8
+
+
+state 3
+
+    (6) exp2 -> exp3 .
+
+    DIV             reduce using rule 6 (exp2 -> exp3 .)
+    MUL             reduce using rule 6 (exp2 -> exp3 .)
+    MAIS            reduce using rule 6 (exp2 -> exp3 .)
+    MENOS           reduce using rule 6 (exp2 -> exp3 .)
+    $end            reduce using rule 6 (exp2 -> exp3 .)
+
+
+state 4
+
+    (7) exp3 -> NUM .
+
+    DIV             reduce using rule 7 (exp3 -> NUM .)
+    MUL             reduce using rule 7 (exp3 -> NUM .)
+    MAIS            reduce using rule 7 (exp3 -> NUM .)
+    MENOS           reduce using rule 7 (exp3 -> NUM .)
+    $end            reduce using rule 7 (exp3 -> NUM .)
+
+
+state 5
+
+    (1) exp1 -> exp1 MAIS . exp2
+    (4) exp2 -> . exp2 DIV exp3
+    (5) exp2 -> . exp2 MUL exp3
+    (6) exp2 -> . exp3
+    (7) exp3 -> . NUM
+
+    NUM             shift and go to state 4
+
+    exp2                           shift and go to state 9
+    exp3                           shift and go to state 3
+
+state 6
+
+    (2) exp1 -> exp1 MENOS . exp2
+    (4) exp2 -> . exp2 DIV exp3
+    (5) exp2 -> . exp2 MUL exp3
+    (6) exp2 -> . exp3
+    (7) exp3 -> . NUM
+
+    NUM             shift and go to state 4
+
+    exp2                           shift and go to state 10
+    exp3                           shift and go to state 3
+
+state 7
+
+    (4) exp2 -> exp2 DIV . exp3
+    (7) exp3 -> . NUM
+
+    NUM             shift and go to state 4
+
+    exp3                           shift and go to state 11
+
+state 8
+
+    (5) exp2 -> exp2 MUL . exp3
+    (7) exp3 -> . NUM
+
+    NUM             shift and go to state 4
+
+    exp3                           shift and go to state 12
+
+state 9
+
+    (1) exp1 -> exp1 MAIS exp2 .
+    (4) exp2 -> exp2 . DIV exp3
+    (5) exp2 -> exp2 . MUL exp3
+
+    MAIS            reduce using rule 1 (exp1 -> exp1 MAIS exp2 .)
+    MENOS           reduce using rule 1 (exp1 -> exp1 MAIS exp2 .)
+    $end            reduce using rule 1 (exp1 -> exp1 MAIS exp2 .)
+    DIV             shift and go to state 7
+    MUL             shift and go to state 8
+
+
+state 10
+
+    (2) exp1 -> exp1 MENOS exp2 .
+    (4) exp2 -> exp2 . DIV exp3
+    (5) exp2 -> exp2 . MUL exp3
+
+    MAIS            reduce using rule 2 (exp1 -> exp1 MENOS exp2 .)
+    MENOS           reduce using rule 2 (exp1 -> exp1 MENOS exp2 .)
+    $end            reduce using rule 2 (exp1 -> exp1 MENOS exp2 .)
+    DIV             shift and go to state 7
+    MUL             shift and go to state 8
+
+
+state 11
+
+    (4) exp2 -> exp2 DIV exp3 .
+
+    DIV             reduce using rule 4 (exp2 -> exp2 DIV exp3 .)
+    MUL             reduce using rule 4 (exp2 -> exp2 DIV exp3 .)
+    MAIS            reduce using rule 4 (exp2 -> exp2 DIV exp3 .)
+    MENOS           reduce using rule 4 (exp2 -> exp2 DIV exp3 .)
+    $end            reduce using rule 4 (exp2 -> exp2 DIV exp3 .)
+
+
+state 12
+
+    (5) exp2 -> exp2 MUL exp3 .
+
+    DIV             reduce using rule 5 (exp2 -> exp2 MUL exp3 .)
+    MUL             reduce using rule 5 (exp2 -> exp2 MUL exp3 .)
+    MAIS            reduce using rule 5 (exp2 -> exp2 MUL exp3 .)
+    MENOS           reduce using rule 5 (exp2 -> exp2 MUL exp3 .)
+    $end            reduce using rule 5 (exp2 -> exp2 MUL exp3 .)
+
